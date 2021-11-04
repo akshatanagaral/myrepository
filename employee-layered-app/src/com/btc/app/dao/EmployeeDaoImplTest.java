@@ -22,8 +22,8 @@ public class EmployeeDaoImplTest {
 	}
 
 	@Test
-	public void testSearchEmployeeById() {
-		//assert(dao.searchEmployeeById(1006)) != null;
+	public void testSearchEmployeeById() throws SQLException {
+		assert(dao.searchEmployeeById(1006)) != null;
 	}
 
 
@@ -38,8 +38,9 @@ public class EmployeeDaoImplTest {
 	}
 
 	@Test
-	public void testUpdateEmployee() {
-	
+	public void testUpdateEmployee()  throws SQLException {
+	Employee emp=new Employee(1006,"Lohit",LocalDate.parse("1994-02-10"),"lohit@gmail.com");
+	assertEquals(emp, dao.updateEmployee(emp));
 	}
 
 	@Test

@@ -60,25 +60,37 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
 	}
 
 	@Override
-	public boolean deleteEmployeeById(int employeeId) {
-	
+	public boolean deleteEmployeeById(int employeeId) throws SQLException {
+	String query="delete from emplyee where employeeId=?";
+	smt=con.prepareStatement(query);
+	smt.setInt(1, employeeId);
+	int deleted=smt.executeUpdate();
+	if(deleted==0){
 		return false;
+	}
+	else{
+		return false;
+	}
 	}
 
 	@Override
 	public Employee updateEmployee(Employee employee) throws SQLException {
-		  String sql = "update empdb set name='?' where employeeId=?";
-		  smt= con.prepareStatement(sql);
-		  smt.setString(2, "employeeName");
-		  int rowsUpdated = smt.executeUpdate();
-		  if (rowsUpdated > 0) {
-		      System.out.println("An existing user was updated successfully!");
-		  }
-		 
-		  smt.executeUpdate(sql);
+		String query = "UPDATE empdb SET employeeId = ?,employeeName=? ,email =? WHERE employeeId=?";
+		String dateString = employee.getDob().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
-		return employee;
+		smt= con.prepareStatement(query);
 		
+		smt.setInt(1, employee.getEmployeeId());
+		smt.setString(2, employee.getEmployeeName());
+	
+		smt.setString(3, employee.getEmail());
+		smt.setInt(4, employee.getEmployeeId());
+		
+		int insertedRowCount = smt.executeUpdate();
+		if(insertedRowCount>0) {
+			return employee;
+		}
+		return null;
 	}
 
 	@Override

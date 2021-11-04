@@ -21,20 +21,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee searchEmployeeById(int employeeId) {
-		
+		if(employees.containsKey(employeeId)==true){
 		return employees.get(employeeId);
 	}
+		return null;
+	}
+
+	
 
 	@Override
 	public boolean deleteEmployeeById(int employeeId) {
+		
+		if(employees.containsKey(employeeId)==true){
 		employees.remove(employeeId);
-		return !employees.containsKey(employeeId);
+		return true;
+	}
+	else{
+		return false;
+	}
 	}
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
+		if(employees.containsKey(employee.getEmployeeId())==true){
 		employees.put(employee.getEmployeeId(),employee);
 		return employee;
+	}
+		return null;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class EmployeeRunner {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner scan=new Scanner(System.in);
 		//2EmployeeAppUI appUI = new EmployeeAppUI();
 		EmployeeAppUI appUI=null;
@@ -26,7 +26,7 @@ public class EmployeeRunner {
 		  appUI.showEmployee();
 		  break;
 	  case 3:
-		  appUI.updatemployee();
+		  appUI.updateEmployee();
 		  break;
 		  
 	  case 0:
